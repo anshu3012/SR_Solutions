@@ -4,7 +4,7 @@
 
 using namespace std;
 
-__global__ void matrixMul(int *a, int *b, int N, int M)
+__global__ void matrixMax(int *a, int *b, int N, int M)
 {
     // Calculate the global row and column for each thread
     int row = blockIdx.y * blockDim.y + threadIdx.y;
@@ -95,7 +95,7 @@ int main(){
     dim3 BLOCKS(blocks, blocks);
 
     // Launch our kernel
-    matrixMul<<<BLOCKS, THREADS>>>(a, b, N, M);
+    matrixMax<<<BLOCKS, THREADS>>>(a, b, N, M);
     cudaDeviceSynchronize();
 
     // Verify the result
